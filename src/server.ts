@@ -4,13 +4,17 @@ import cors from "cors";
 import { PORT } from "./config/environment";
 
 import database from "./database/connection";
+import routerPatient from "./routes/patient";
 
 // models
-import "./models/paciente";
+import "./models/patient";
 
 export default class Server {
-  public app: express.Application;
-  public port: number;
+  private app: express.Application;
+  private port: number;
+  private apiRoutes = {
+    patients: "/api/pacientes",
+  };
 
   constructor() {
     this.app = express();
@@ -19,10 +23,15 @@ export default class Server {
     // initial methods
     this.dbConnection();
     this.middlewares();
+
+    // routes
+    this.routes();
   }
 
-  public start(callBack: Function) {
-    this.app.listen(callBack);
+  listen() {
+    this.app.listen(this.port, () => {
+      console.log("Server is running in port", this.port);
+    });
   }
 
   async dbConnection() {
@@ -42,6 +51,6 @@ export default class Server {
   }
 
   routes() {
-    // this.app.use(this.apiPaths.usuarios, userRoutes)
+    this.app.use(this.apiRoutes.patients, routerPatient);
   }
 }
