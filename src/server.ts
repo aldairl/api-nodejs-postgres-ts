@@ -2,7 +2,11 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import { PORT } from "./config/environment";
+
 import database from "./database/connection";
+
+// models
+import "./models/paciente";
 
 export default class Server {
   public app: express.Application;
@@ -23,7 +27,7 @@ export default class Server {
 
   async dbConnection() {
     try {
-      await database.authenticate();
+      await database.sync({ alter: true });
       console.log("Database's connection stablished successfully");
     } catch (error: any) {
       throw new Error(error);
