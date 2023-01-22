@@ -12,14 +12,18 @@ export const Patient = database.define("Paciente", {
   },
   FirstName: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   LastName: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   Email: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   Phone: {
     type: DataTypes.STRING(20),
+    allowNull: false,
   },
 });
