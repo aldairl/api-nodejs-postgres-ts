@@ -1,13 +1,13 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import { PORT } from "./config/environment";
+import { PORT } from "../config/environment";
 
-import database from "./database/connection";
-import routerPatient from "./routes/patient";
+import database from "../database/connection";
+import routerPatient from "../routes/patient";
 
 // models
-import "./models/patient";
+import "./patient";
 
 export default class Server {
   private app: express.Application;

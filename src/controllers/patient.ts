@@ -33,7 +33,7 @@ export const createPatiente = async (req: Request, res: Response) => {
     const patient = await createPatient(body);
     responses.success(req, res, patient);
   } catch (error: any) {
-    error.message = `El paciente no pudo ser registrado, ${error.message}`;
+    error.message = `El paciente no pudo ser registrado. ${error.message}`;
     responses.error(req, res, error);
   }
 };
