@@ -1,15 +1,26 @@
-FROM node:16-alpine
+FROM node:16-alpine as development
 
-WORKDIR /src
+WORKDIR /usr/src
 
-COPY package*.json ./
-
-COPY . .
+COPY package*.json .
 
 RUN npm install
 
-ENV NODE_ENV=producction
+COPY . .
 
-EXPOSE 5000
+RUN npm run build
 
-CMD ["npm", "start"]
+FROM node:16-alpine as producction
+
+ARG NODE_ENV=producction
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src
+
+COPY package*.json .
+
+RUN npm i --producction
+
+COPY --from=development /usr/src/dist ./dist
+
+CMD ["node", "dist/index.js"]

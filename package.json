@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/index.js",
-    "start:dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/index.js\""
+    "start": "rm -rf dist && tsc && node dist/index.js",
+    "start:dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/index.js\"",
+    "build": "rm -rf dist && tsc"
   },
   "keywords": [],
   "author": "",

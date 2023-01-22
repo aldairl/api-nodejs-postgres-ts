@@ -6,9 +6,6 @@ import { PORT } from "../config/environment";
 import database from "../database/connection";
 import indexRouter from "../routes/";
 
-// models
-import "./patient";
-
 export default class Server {
   private app: express.Application;
   private port: number;

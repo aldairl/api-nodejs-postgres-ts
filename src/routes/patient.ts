@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { getPatient, getPatients, createPatiente } from '../controllers/patient';
+import { getPatientC, getPatientsC, createPatienteC } from '../controllers/patient';
 import { validatePatient } from "../validators/patient";
 
 const router = Router();
 
-router.get('/', getPatients)
-router.get('/:id', getPatient)
-router.post('/', validatePatient ,createPatiente)
+router.get('/', getPatientsC)
+router.get('/:id', getPatientC)
+router.post('/', validatePatient ,createPatienteC)
 
 export default router;

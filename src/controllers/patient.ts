@@ -1,19 +1,17 @@
 import { Request, Response } from "express";
 import { responses } from "../helpers/responses";
-import { createPatient } from "../services/patient";
+import { createPatient, getPatients } from "../services/patient";
 
-export const getPatients = (req: Request, res: Response) => {
+export const getPatientsC = async (req: Request, res: Response) => {
   try {
-    const patients = {
-      msg: "getPatients",
-    };
+    const patients = await getPatients();
     responses.success(req, res, patients);
   } catch (error: any) {
     responses.error(req, res, error);
   }
 };
 
-export const getPatient = (req: Request, res: Response) => {
+export const getPatientC = (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -27,7 +25,7 @@ export const getPatient = (req: Request, res: Response) => {
   }
 };
 
-export const createPatiente = async (req: Request, res: Response) => {
+export const createPatienteC = async (req: Request, res: Response) => {
   try {
     const { body } = req;
     const patient = await createPatient(body);

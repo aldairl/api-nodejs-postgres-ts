@@ -1,23 +1,31 @@
 version: '3.9'
 services:
   api_hospital:
-    build: .
+    container_name: api_hospital
+    build: 
+      context: .
+      target: development
+    volumes:
+      - ./:/usr/src
+      - /usr/src/node_modules
     ports:
       - 5000:5000
     env_file:
       - .env
-    # depends_on:
-    #   - db_hospital
+    command: npm run start:dev
+    depends_on:
+      - db_hospital
 
-  # db_hospital:
-  #   image: postgres:15.1
-  #   restart: always
-  #   ports:
-  #     - '5432:5432'
-  #   env_file:
-  #     - .env
-#     volumes:
-#       - db-hospital:/var/lib/postgresql/data
+  db_hospital:
+    container_name: db_hospital
+    image: postgres:15.1
+    restart: always
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env
+    volumes:
+      - db-hospital:/var/lib/postgresql/data
 
-# volumes:
-#   db-hospital:
+volumes:
+  db-hospital:
