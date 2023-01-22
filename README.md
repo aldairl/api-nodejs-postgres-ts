@@ -47,3 +47,11 @@ Running in production:
 ```bash
 npm run start
 ```
+
+## API Endpoints
+
+List of available routes:
+
+**Patient routes**:\
+`GET /api/paciente` - get all registered patients\
+`POST /api/paciente` - register a patient\

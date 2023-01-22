@@ -14,7 +14,7 @@ services:
 
   db_hospital:
     container_name: db_hospital
-    image: postgres:15.1
+    image: postgres:15.1-alpine
     restart: always
     ports:
       - '5432:5432'
