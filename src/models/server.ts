@@ -4,7 +4,7 @@ import cors from "cors";
 import { PORT } from "../config/environment";
 
 import database from "../database/connection";
-import routerPatient from "../routes/patient";
+import indexRouter from "../routes/";
 
 // models
 import "./patient";
@@ -13,7 +13,7 @@ export default class Server {
   private app: express.Application;
   private port: number;
   private apiRoutes = {
-    patients: "/api/pacientes",
+    index: "/api",
   };
 
   constructor() {
@@ -51,6 +51,6 @@ export default class Server {
   }
 
   routes() {
-    this.app.use(this.apiRoutes.patients, routerPatient);
+    this.app.use(this.apiRoutes.index, indexRouter);
   }
 }
