@@ -9,7 +9,7 @@ services:
       - ./:/usr/src
       - /usr/src/node_modules
     ports:
-      - 5000:5000
+      - ${PORT}:${PORT}
     env_file:
       - .env
     command: npm run start:dev

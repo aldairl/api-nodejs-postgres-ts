@@ -20,5 +20,5 @@ export const createPatient = async (patient: IPatient) => {
 
 export const getPatients = async () => {
   const patients = await Patient.findAll({});
-  return patients;
+  return { patients };
 };
